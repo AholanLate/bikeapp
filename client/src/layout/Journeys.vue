@@ -1,10 +1,13 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <div class="content">Journeys stuff here</div>
 </template>
 
 <style>
+
+.content{
+  text-align: center;
+}
+  
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;

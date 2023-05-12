@@ -4,19 +4,14 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/bike.svg" width="200" height="200" />
-
-    <div class="wrapper">
-      <HelloWorld msg="Helsinki City Bike App" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/trips">Journey list view</RouterLink>
-        <RouterLink to="/stations">Stations list</RouterLink>
-      </nav>
-    </div>
+    <img alt="bike app logo" class="logo" src="@/assets/bike.svg" width="200" height="200" />
+    <h1 style="margin:auto">Helsinki City Bike app</h1>
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/Journeys">Journey list view</RouterLink>
+      <RouterLink to="/Stations">Stations list</RouterLink>
+    </nav>
   </header>
-
   <RouterView />
 </template>
 
@@ -24,7 +19,7 @@ import { RouterLink, RouterView } from 'vue-router'
 header {
   line-height: 1.5;
   max-height: 100vh;
-  margin: auto;
+  text-align: center;
 }
 
 .logo {
@@ -33,10 +28,10 @@ header {
 }
 
 nav {
-  width: 100%;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
   margin-top: 2rem;
+  text-align: center;
 }
 
 nav a.router-link-exact-active {
@@ -59,13 +54,12 @@ nav a:first-of-type {
 
 @media (min-width: 1024px) {
   header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    margin: auto;
   }
 
   .logo {
     margin: 0 2rem 0 0;
+    margin: auto;
   }
 
   header .wrapper {
@@ -75,10 +69,8 @@ nav a:first-of-type {
   }
 
   nav {
-    text-align: left;
-    margin-left: -1rem;
+    text-align: center;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }
