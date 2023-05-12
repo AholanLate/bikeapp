@@ -1,2 +1,2 @@
 # bikeapp
-Solita dev academy  pre-assignment
+Solita dev academy pre-assignment
