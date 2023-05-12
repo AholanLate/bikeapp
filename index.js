@@ -1,8 +1,10 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const routes = require('./routes/tripsRoute');
 
 const app = express();
 app.use(bodyParser.json());
+app.use('/', routes);
 
 //MongoDB connection
 const mongoose = require('mongoose');
@@ -16,14 +18,7 @@ const port = 4000;
 app.get("/", (req, res) => {
     res.send("homepage");
   })
-  
-app.get("/trips", (req, res) => {
-    res.send("Trips");
-  })
 
-app.get("/stations", (req, res) => {
-    res.send("Stations");
-})
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
