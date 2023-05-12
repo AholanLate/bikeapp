@@ -11,7 +11,7 @@ var TripsSchema = new Schema(
     return_station_id: {type: Number, required: true },
     return_station_name: { type: String, required: true },
     distance: { type: Number, required: true },
-    duration: { type: Number, required: true },
+    duration: { type: Number, required: true }
   }
 );
 
