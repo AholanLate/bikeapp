@@ -3,10 +3,10 @@
     <h1>Stations</h1>
 
     <button class="button" v-if="!stations.length" @click="loadStations()">
-      Load stations
+      Load Stations
     </button>
     <div>
-      <table v-if="stations.length" class="table is-fullwidth is-striped is-hoverable has-text-left m-5">
+      <table v-if="stations.length" class="table is is-striped is-hoverable has-text-left m-5">
         <thead>
           <tr>
             <th class="has-text-weight-bold">ID</th>

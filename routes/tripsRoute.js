@@ -29,4 +29,37 @@ router.get("/", async (req, res) => {
   }
 })
 
+// Get trip statistics for a particular station
+router.get("/:id", async (req, res) => {
+  try {
+    const station_id = parseInt(req.params.id);
+    
+    // Find the number of trips that started at the station
+    const startingTrips = await Trip.countDocuments({ departure_station_id: station_id });
+    
+    // Find the number of trips that ended at the station
+    const endingTrips = await Trip.countDocuments({ return_station_id: station_id });
+    
+    // Calculate the average distance of trips that started at the station
+    const startingTripDistances = await Trip.find({ departure_station_id: station_id }, { distance: 1 });
+    const startingTripDistanceSum = startingTripDistances.reduce((acc, trip) => acc + trip.distance, 0);
+    const avgStartingTripDistance = Math.round(startingTripDistanceSum / startingTrips);
+
+    // Avg distance when being return station
+    const returnTripDistances = await Trip.find({ departure_station_id: station_id }, { distance: 1 });
+    const returnTripDistanceSum = returnTripDistances.reduce((acc, trip) => acc + trip.distance, 0);
+    const avgReturnTripDistance = Math.round(returnTripDistanceSum / endingTrips);    
+
+    res.send({ 
+      startingTrips,
+      endingTrips,
+      avgStartingTripDistance,   
+      avgReturnTripDistance 
+    });
+
+  } catch(err) {
+    return res.status(500).json({ message: err.message });
+  }
+});
+
 module.exports = router;

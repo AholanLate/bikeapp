@@ -5,7 +5,7 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header>
     <img alt="bike app logo" class="logo" src="@/assets/bike.svg" width="200" height="200" />
-    <h1 class="is-size-5">Helsinki City Bike app</h1>
+    <h1 class="is-size-3 has-text-weight-semibold">Helsinki City Bike app</h1>
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/Journeys">Journeys</RouterLink>
@@ -28,7 +28,7 @@ header {
 }
 
 nav {
-  font-size: 15px;
+  font-size: 18px;
   text-align: center;
   margin-top: 2rem;
   text-align: center;
@@ -70,7 +70,7 @@ nav a:first-of-type {
 
   nav {
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.3rem;
     padding: 1rem 0;
     margin-top: 1rem;
   }

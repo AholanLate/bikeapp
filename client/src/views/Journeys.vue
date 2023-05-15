@@ -1,9 +1,9 @@
 <template>
   <div class="content mt-5">
-    <h1>Trips</h1>
+    <h1>Journeys</h1>
 
     <button class="button" v-if="!trips.length" @click="loadTrips()">
-      Load trips
+      Load Journeys
     </button>
     <div>
       <table v-if="trips.length" class="table is-fullwidth is-striped is-hoverable has-text-left m-5">
