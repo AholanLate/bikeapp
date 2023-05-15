@@ -13,6 +13,7 @@
             <th class="has-text-weight-bold">Name</th>
             <th class="has-text-weight-bold">Address</th>
             <th class="has-text-weight-bold">Capacity</th>
+            <th class="has-text-weight-bold">Details</th>
           </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
             <td>{{ station.Nimi }}</td>
             <td>{{ station.Osoite }}</td>
             <td>{{ station.Kapasiteet }}</td>
+            <td><router-link :to="{ name: 'stationDetails', params: { id: station.ID } }">Station details</router-link></td>
           </tr>
         </tbody>
       </table>

@@ -10,7 +10,7 @@ router.use(cors());
 router.get("/", async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const limit = 15;
+    const limit = 10;
     const startIndex = (page - 1) * limit;
     
     const stations = await Station.find().skip(startIndex).limit(limit);
