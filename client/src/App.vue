@@ -8,8 +8,8 @@ import { RouterLink, RouterView } from 'vue-router'
     <h1 class="is-size-5">Helsinki City Bike app</h1>
     <nav>
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/Journeys">Journey list view</RouterLink>
-      <RouterLink to="/Stations">Stations list</RouterLink>
+      <RouterLink to="/Journeys">Journeys</RouterLink>
+      <RouterLink to="/Stations">Stations</RouterLink>
     </nav>
   </header>
   <RouterView />

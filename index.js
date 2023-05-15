@@ -1,10 +1,15 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const routes = require('./routes/tripsRoute');
+const tripsRoute = require('./routes/tripsRoute');
+const stationsRoute = require('./routes/stationsRoute');
 
 const app = express();
 app.use(bodyParser.json());
-app.use('/', routes);
+// Use the tripsRoute router for all trips-related routes
+app.use('/trips', tripsRoute);
+
+// Use the stationsRoute router for all stations-related routes
+app.use('/stations', stationsRoute);
 
 //MongoDB connection
 const mongoose = require('mongoose');

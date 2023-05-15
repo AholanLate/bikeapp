@@ -2,7 +2,7 @@
   <div class="content mt-5">
     <h1>Trips</h1>
 
-    <button @click="loadTrips()">
+    <button class="button" v-if="!trips.length" @click="loadTrips()">
       Load trips
     </button>
     <div>
@@ -26,12 +26,11 @@
           </tr>
         </tbody>
       </table>
-
-      <p v-if="trips.length">Page {{ currentPage }} of total pages of {{ totalPages }}</p>
-
-      <button @click="previousPage">previous</button>
-      <button @click="nextPage">next</button>
-      
+      <div v-if="trips.length">
+      <p>Page {{ currentPage }} of total pages of {{ totalPages }}</p>
+      <button class="button is-small mr-1" @click="previousPage" v-if="currentPage>1">&lt;</button>
+      <button class="button is-small ml-1" @click="nextPage">></button>
+      </div>
     </div>
   </div>
 </template>
