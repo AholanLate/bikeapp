@@ -5,7 +5,7 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header>
     <img alt="bike app logo" class="logo" src="@/assets/bike.svg" width="200" height="200" />
-    <h1 style="margin:auto">Helsinki City Bike app</h1>
+    <h1 class="is-size-5">Helsinki City Bike app</h1>
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/Journeys">Journey list view</RouterLink>
