@@ -27,6 +27,8 @@
         </tbody>
       </table>
 
+      <p v-if="trips.length">Page {{ currentPage }} of total pages of {{ totalPages }}</p>
+
       <button @click="previousPage">previous</button>
       <button @click="nextPage">next</button>
       
