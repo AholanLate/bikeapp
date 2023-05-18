@@ -2,10 +2,10 @@
   <div class="content mt-5">
     <h1>Stations</h1>
 
-    <div class="filters m-auto">
+    <div class="filters m-auto has-text-left">
       <p class="mt-5">filter results with:</p>
 
-      <div class="is-flex m-1">
+      <div class="is-flex">
         <input
           class="input is-small"
           placeholder="Station name"
@@ -18,9 +18,9 @@
           >
         </button>
       </div>
-    </div>
-    <p class="mt-5">Or load all</p>
+      <p class="mt-5">Or load all</p>
       <button class="button" @click="loadStations">Load</button>
+    </div>
     
     <div class="mt-5 has-text-danger" v-if="notyEmptyResult === true">Station not found, check name</div>
 

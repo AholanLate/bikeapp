@@ -5,7 +5,7 @@
     <div class="filters m-auto">
       <p class="mt-5">filter results with:</p>
 
-      <div class="is-flex m-1">
+      <div class="is-flex mr-1 mb-1">
         <input
           class="input is-small"
           placeholder="Departure station name"
@@ -19,7 +19,7 @@
         </button>
       </div>
 
-      <div class="is-flex m-1">
+      <div class="is-flex mr-1 mb-1">
         <input
           class="input is-small"
           placeholder="Return station name"
@@ -203,6 +203,7 @@ export default {
 }
 .filters{
   width: 300px;
+  text-align: left;
 }
 table{
   margin: auto;
