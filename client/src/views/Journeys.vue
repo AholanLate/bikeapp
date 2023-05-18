@@ -37,6 +37,8 @@
       <button class="button" @click="loadTrips">Load</button>
     </div>
 
+    <div class="mt-5 has-text-danger" v-if="notyEmptyResult === true">No trips found, check filters</div>
+    
     <table v-if="trips.length" class="table is-fullwidth is-striped is-hoverable has-text-left m-5">
       <thead>
         <tr>
@@ -77,6 +79,7 @@ export default {
       totalPages: null,
       departureStationName: '',
       returnStationName: '',
+      notyEmptyResult: false
     }
   },
   methods: {
@@ -87,6 +90,11 @@ export default {
       this.trips = response.data.trips;
       this.totalPages = response.data.totalPages;
       this.currentPage = response.data.currentPage;
+
+      this.returnStationName = '';
+      this.departureStationName= '';
+
+      this.notyEmptyResult = false;
     }
   } catch (error) {
     console.log(error);
@@ -130,24 +138,40 @@ export default {
     },
 
     async loadByDep(page = 1) {
-      try {
-        if (this.departureStationName !== '') {
-          const response = await axios.get(`http://localhost:4000/trips/departure/${this.departureStationName}?page=${page}`);
-          this.trips = response.data.trips;
-          this.totalPages = response.data.totalPages;
-          this.currentPage = response.data.currentPage;
+  try {
+    if (this.departureStationName !== '') {
+      // Convert first letter to uppercase
+      this.departureStationName = this.departureStationName.charAt(0).toUpperCase() + this.departureStationName.slice(1);
 
-          // Reset return station name field
-        this.returnStationName = '';
-        }
-      } catch (error) {
-        console.log(error);
+      const response = await axios.get(`http://localhost:4000/trips/departure/${this.departureStationName}?page=${page}`);
+      this.trips = response.data.trips;
+      this.totalPages = response.data.totalPages;
+      this.currentPage = response.data.currentPage;
+
+      // Reset return station name field
+      this.returnStationName = '';
+
+      // noty user if not found
+      if (!this.trips.length) {
+        this.notyEmptyResult = true;
       }
-    },
+      else{
+        this.notyEmptyResult = false;
+      }
+
+    }
+  } catch (error) {
+    console.log(error);
+  }
+},
 
     async loadByRet(page = 1) {
       try {
         if (this.returnStationName !== '') {
+
+          // first letter to uppecase
+          this.returnStationName = this.returnStationName.charAt(0).toUpperCase() + this.returnStationName.slice(1);
+
           const response = await axios.get(`http://localhost:4000/trips/return/${this.returnStationName}?page=${page}`);
           this.trips = response.data.trips;
           this.totalPages = response.data.totalPages;
@@ -155,6 +179,14 @@ export default {
 
           // Reset departure station name field
           this.departureStationName = '';
+
+          if (!this.trips.length) {
+            this.notyEmptyResult = true;
+          }
+          else{
+            this.notyEmptyResult = false;
+          }
+
         }
       } 
       catch (error) {
