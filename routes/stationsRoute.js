@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Fetch a station by name
+// Fetch a station by id
 router.get("/:id", async (req, res) => {
   try {
     const station = await Station.findOne({ ID: req.params.id });
@@ -41,4 +41,18 @@ router.get("/:id", async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 });
+
+// fetch a station by name
+router.get("/byName/:name", async (req, res) => {
+  try {  
+    const station = await Station.findOne({ Nimi: req.params.name });
+
+    res.send(station);
+
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+});
+
+
 module.exports = router;

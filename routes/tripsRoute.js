@@ -22,9 +22,9 @@ router.get("/", async (req, res) => {
       totalItems: count,
       trips: trips
     };
-    
-    res.send(result);
-  } catch(err) {
+    res.send(result); 
+  } 
+  catch(err) {
     return res.status(500).json({ message: err.message });
   }
 })
@@ -62,7 +62,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Find all trips with a particular departure station name
 // Find all trips with a particular departure station name
 router.get("/departure/:name", async (req, res) => {
   try {
