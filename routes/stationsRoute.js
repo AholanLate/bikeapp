@@ -44,15 +44,19 @@ router.get("/:id", async (req, res) => {
 
 // fetch a station by name
 router.get("/byName/:name", async (req, res) => {
-  try {  
+  try {
     const station = await Station.findOne({ Nimi: req.params.name });
 
-    res.send(station);
+    if (!station) {
+      return res.status(404).json({ message: "Station not found" });
+    }
 
+    res.send(station);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
 });
+
 
 
 module.exports = router;
