@@ -15,6 +15,10 @@ describe('Station API', () => {
         .get(`/stations/byName/${testStationName}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
+          expect(res.body).to.have.property('ID');
+          expect(res.body).to.have.property('Nimi');
+          expect(res.body).to.have.property('Osoite');
+          expect(res.body).to.have.property('Kaupunki');
           done();
         });
     });
@@ -35,6 +39,10 @@ describe('Station API', () => {
         .get(`/stations/${testStationId}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
+          expect(res.body).to.have.property('ID');
+          expect(res.body).to.have.property('Nimi');
+          expect(res.body).to.have.property('Osoite');
+          expect(res.body).to.have.property('Kaupunki');
           done();
         });
     });
