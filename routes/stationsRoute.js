@@ -47,11 +47,8 @@ router.get("/byName/:name", async (req, res) => {
   try {
     const station = await Station.findOne({ Nimi: req.params.name });
 
-    if (!station) {
-      return res.status(404).json({ message: "Station not found" });
-    }
-
     res.send(station);
+    
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

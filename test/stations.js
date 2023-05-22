@@ -23,11 +23,11 @@ describe('Station API', () => {
         });
     });
 
-    it('should return an error if station is not found', (done) => {
+    it('no response data if station is not found', (done) => {
       chai.request(`http://localhost:${process.env.PORT}`)
         .get('/stations/byName/NonExistentStation')
         .end((err, res) => {
-          expect(res).to.have.status(404);
+          expect(res.body).to.be.empty;
           done();
         });
     });

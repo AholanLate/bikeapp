@@ -98,6 +98,8 @@ export default {
     },
     async stationByName() {
       try{
+        // Convert first letter to uppercase
+        this.stationName = this.stationName.charAt(0).toUpperCase() + this.stationName.slice(1);
         const response = await axios.get(`http://localhost:4000/stations/byName/${this.stationName}`)
 
         if (response.data){ 
