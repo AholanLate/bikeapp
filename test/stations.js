@@ -1,10 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../index');
-const dotenv = require('dotenv'); 
-
-// Load environment variables from .env file
-dotenv.config();
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -12,13 +8,10 @@ const expect = chai.expect;
 const testStationId = 501;
 const testStationName = 'Länsituuli';
 
-// all tests for station database
-describe('Station APIs', () => {
-
-  // test station by name search
+describe('Station API', () => {
   describe('GET /stations/byName/:name', () => {
     it('should return a station by name', (done) => {
-      chai.request(`http://localhost:${process.env.PORT}`)
+      chai.request('http://localhost:4000')
         .get(`/stations/byName/${testStationName}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
@@ -31,7 +24,7 @@ describe('Station APIs', () => {
     });
 
     it('should return an error if station is not found', (done) => {
-      chai.request(`http://localhost:${process.env.PORT}`)
+      chai.request('http://localhost:4000')
         .get('/stations/byName/NonExistentStation')
         .end((err, res) => {
           expect(res).to.have.status(404);
@@ -42,7 +35,7 @@ describe('Station APIs', () => {
 
   describe('GET /stations/:id', () => {
     it('should return a station by id', (done) => {
-      chai.request(`http://localhost:${process.env.PORT}`)
+      chai.request('http://localhost:4000')
         .get(`/stations/${testStationId}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
@@ -55,7 +48,7 @@ describe('Station APIs', () => {
     });
 
     it('should return an error if station is not found', (done) => {
-      chai.request(`http://localhost:${process.env.PORT}`)
+      chai.request('http://localhost:4000')
         .get('/stations/999')
         .end((err, res) => {
           expect(res).to.have.status(404);
