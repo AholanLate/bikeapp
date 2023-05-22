@@ -7,7 +7,7 @@ const expect = chai.expect;
 describe('Trips API', () => {
   describe('GET /trips', () => {
     it('should return a list of trips with pagination', (done) => {
-      chai.request('http://localhost:4000')
+      chai.request(`http://localhost:${process.env.PORT}`)
         .get('/trips')
         .end((err, res) => {
           expect(res).to.have.status(200);
@@ -26,7 +26,7 @@ describe('Trips API', () => {
       this.timeout(5000); // Increase the timeout limit
   
       const stationId = 501;
-      chai.request('http://localhost:4000')
+      chai.request(`http://localhost:${process.env.PORT}`)
         .get(`/trips/${stationId}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
@@ -35,7 +35,7 @@ describe('Trips API', () => {
           expect(res.body).to.have.property('endingTrips').to.be.a('number');
           expect(res.body).to.have.property('avgStartingTripDistance').to.be.a('number');
           expect(res.body).to.have.property('avgReturnTripDistance').to.be.a('number');
-          done(); // Call the done callback
+          done(); 
         });
     });
   });
@@ -44,7 +44,7 @@ describe('Trips API', () => {
   describe('GET /trips/departure/:name', () => {
     it('should return trips with a particular departure station name', (done) => {
       const testStationName = 'Hanasaari';
-      chai.request('http://localhost:4000')
+      chai.request(`http://localhost:${process.env.PORT}`)
         .get(`/trips/departure/${testStationName}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
@@ -61,7 +61,7 @@ describe('Trips API', () => {
   describe('GET /trips/return/:name', () => {
     it('should return trips with a particular return station name', (done) => {
       const testStationName = 'Länsituuli';
-      chai.request('http://localhost:4000')
+      chai.request(`http://localhost:${process.env.PORT}`)
         .get(`/trips/return/${testStationName}`)
         .end((err, res) => {
           expect(res).to.have.status(200);

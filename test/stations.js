@@ -11,7 +11,7 @@ const testStationName = 'Länsituuli';
 describe('Station API', () => {
   describe('GET /stations/byName/:name', () => {
     it('should return a station by name', (done) => {
-      chai.request('http://localhost:4000')
+      chai.request(`http://localhost:${process.env.PORT}`)
         .get(`/stations/byName/${testStationName}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
@@ -24,7 +24,7 @@ describe('Station API', () => {
     });
 
     it('should return an error if station is not found', (done) => {
-      chai.request('http://localhost:4000')
+      chai.request(`http://localhost:${process.env.PORT}`)
         .get('/stations/byName/NonExistentStation')
         .end((err, res) => {
           expect(res).to.have.status(404);
@@ -35,7 +35,7 @@ describe('Station API', () => {
 
   describe('GET /stations/:id', () => {
     it('should return a station by id', (done) => {
-      chai.request('http://localhost:4000')
+      chai.request(`http://localhost:${process.env.PORT}`)
         .get(`/stations/${testStationId}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
@@ -48,7 +48,7 @@ describe('Station API', () => {
     });
 
     it('should return an error if station is not found', (done) => {
-      chai.request('http://localhost:4000')
+      chai.request(`http://localhost:${process.env.PORT}`)
         .get('/stations/999')
         .end((err, res) => {
           expect(res).to.have.status(404);

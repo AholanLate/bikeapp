@@ -27,7 +27,7 @@ mongoose.connect(mongoURL, { useNewUrlParser: true , useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error'));
 
-const port = 4000;
+const port = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.send("homepage");
