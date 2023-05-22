@@ -21,6 +21,7 @@ The project relies on the following technologies:
 - **MongoDB**: A versatile NoSQL database for efficient data storage and retrieval, offering flexibility and scalability.
 - **Vue.js**: Empowers the creation of dynamic and interactive user interfaces, enhancing user experiences with its progressive JavaScript framework.
 - **Axios.js**: A popular HTTP client library for JavaScript that simplifies making asynchronous HTTP requests from both the frontend and backend. It is used to communicate with the backend server and fetch data from the APIs.
+- **Bulma**: CSS framework
 - **Mocha**: A comprehensive testing framework for running unit and integration tests, ensuring reliable functionality.
 - **Chai**: An assertion library that provides expressive and readable test assertions, complementing Mocha in creating effective test suites.
 
