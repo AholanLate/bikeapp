@@ -10,13 +10,24 @@ This is a pre-assignment for Solita Dev Academy Finland 2023. Made by Lauri Ahol
 - [Run project](#run-project)
 - [Next](#next)
 
-## Project Description
+## Project Description 
 
 Provide a more detailed overview of your project. Describe what it does, why it's useful, and any other important details.
 
-## Stack
+## Used Stack
 
-used stack
+The project relies on the following technologies:
+
+- **Node.js**: Executes server-side JavaScript, ensuring seamless integration between frontend and backend components.
+- **Express.js**: Simplifies routing, middleware, and HTTP request handling for building scalable and robust web APIs.
+- **MongoDB**: A versatile NoSQL database for efficient data storage and retrieval, offering flexibility and scalability.
+- **Vue.js**: Empowers the creation of dynamic and interactive user interfaces, enhancing user experiences with its progressive JavaScript framework.
+- **Mocha**: A comprehensive testing framework for running unit and integration tests, ensuring reliable functionality.
+- **Chai**: An assertion library that provides expressive and readable test assertions, complementing Mocha in creating effective test suites.
+
+By leveraging this technology stack, the project achieves seamless integration, efficient server-side development, flexible data management, engaging frontend experiences, and reliable application testing.
+
+## Features
 
 ## Run project
 
@@ -46,7 +57,7 @@ Install and update dependencies
 
 `npm update`
 
-Make sure you have localhost 4000 not in use already. Otherwise, you need to make room for the project in port 4000, or change port in .env. If you change port in .env file, you need to make some adjustments in frontend later as well. 
+Make sure you have port 4000 available for use. Otherwise, you need to make room for the project in port 4000, or change port in the .env file. If you change port in .env file, you need to make some adjustments in frontend later as well. 
 
 Nodemon needs to be installed separately
 
@@ -63,7 +74,7 @@ Move to frontend directory
 
 `cd client`
 
-Again, swich to node 16.13.1
+Again, make sure you are using node version 16.13.1
 
 `npm install`
 
