@@ -22,6 +22,10 @@
 <script>
 import axios from 'axios'
 
+// Load environment variables from .env file
+const dotenv = require('dotenv'); 
+dotenv.config();
+
 export default {
   props: {
     id: {
@@ -38,7 +42,7 @@ export default {
   },
   async created() {
 try {
-  const response = await axios.get(`http://localhost:4000/stations/${this.id}`)
+  const response = await axios.get(`http://localhost:${process.env.PORT}/stations/${this.id}`)
   if (response.data) {
     this.station = response.data
   }
@@ -46,7 +50,7 @@ try {
   console.log(error)
 }
 try{
-  const response = await axios.get(`http://localhost:4000/trips/${this.id}`)
+  const response = await axios.get(`http://localhost:${process.env.PORT}/trips/${this.id}`)
   if (response.data) {
     this.stationStats = response.data
   }

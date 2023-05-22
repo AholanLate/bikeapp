@@ -56,8 +56,8 @@ router.get("/:id", async (req, res) => {
       avgStartingTripDistance,   
       avgReturnTripDistance 
     });
-
-  } catch(err) {
+  } 
+  catch(err) {
     return res.status(500).json({ message: err.message });
   }
 });
@@ -81,7 +81,8 @@ router.get("/departure/:name", async (req, res) => {
     };
     
     res.send(result);
-  } catch (err) {
+  } 
+  catch (err) {
     return res.status(500).json({ message: err.message });
   }
 });

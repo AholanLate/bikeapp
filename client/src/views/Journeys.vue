@@ -12,7 +12,7 @@
           v-model="departureStationName"
         >
         <button
-          class="button is-small ml-1"
+          class="button is-small ml-1 is-primary"
           @click="loadByDep"
         >
           >
@@ -26,7 +26,7 @@
           v-model="returnStationName"
         >
         <button
-          class="button is-small ml-1"
+          class="button is-small ml-1 is-primary"
           @click="loadByRet"
         >
           >
@@ -34,10 +34,10 @@
       </div>
 
       <p class="mt-5">Or load all</p>
-      <button class="button" @click="loadTrips">Load</button>
+      <button class="button is-primary" @click="loadTrips">Load All</button>
     </div>
 
-    <div class="mt-5 has-text-danger" v-if="notyEmptyResult === true">No trips found, check filters</div>
+    <div class="mt-5 has-text-danger" v-if="emptyResult === true">No trips found, check filters</div>
     
     <table v-if="trips.length" class="table is-fullwidth is-striped is-hoverable has-text-left m-5">
       <thead>
@@ -71,6 +71,10 @@
 <script>
 import axios from 'axios'
 
+// Load environment variables from .env file
+const dotenv = require('dotenv'); 
+dotenv.config();
+
 export default {
   data() {
     return {
@@ -79,13 +83,13 @@ export default {
       totalPages: null,
       departureStationName: '',
       returnStationName: '',
-      notyEmptyResult: false
+      emptyResult: false
     }
   },
   methods: {
     async loadTrips(page = 1) {
   try {
-    const response = await axios.get(`http://localhost:4000/trips?page=${page}`);
+    const response = await axios.get(`http://localhost:${process.env.PORT}/trips?page=${page}`);
     if (response.data) {
       this.trips = response.data.trips;
       this.totalPages = response.data.totalPages;
@@ -94,7 +98,7 @@ export default {
       this.returnStationName = '';
       this.departureStationName= '';
 
-      this.notyEmptyResult = false;
+      this.emptyResult = false;
     }
   } catch (error) {
     console.log(error);
@@ -138,31 +142,32 @@ export default {
     },
 
     async loadByDep(page = 1) {
-  try {
-    if (this.departureStationName !== '') {
-      // Convert first letter to uppercase
-      this.departureStationName = this.departureStationName.charAt(0).toUpperCase() + this.departureStationName.slice(1);
+      try {
+        if (this.departureStationName !== '') {
+          // Convert first letter to uppercase
+          this.departureStationName = this.departureStationName.charAt(0).toUpperCase() + this.departureStationName.slice(1);
 
-      const response = await axios.get(`http://localhost:4000/trips/departure/${this.departureStationName}?page=${page}`);
-      this.trips = response.data.trips;
-      this.totalPages = response.data.totalPages;
-      this.currentPage = response.data.currentPage;
+          const response = await axios.get(`http://localhost:${process.env.PORT}/trips/departure/${this.departureStationName}?page=${page}`);
+          this.trips = response.data.trips;
+          this.totalPages = response.data.totalPages;
+          this.currentPage = response.data.currentPage;
 
-      // Reset return station name field
-      this.returnStationName = '';
+          // Reset return station name field
+          this.returnStationName = '';
 
-      // noty user if not found
-      if (!this.trips.length) {
-        this.notyEmptyResult = true;
+          // noty user if not found
+          if (!this.trips.length) {
+            this.emptyResult = true;
+          }
+          else{
+            this.emptyResult = false;
+          }
+
+        }
+      } 
+      catch (error) {
+        console.log(error);
       }
-      else{
-        this.notyEmptyResult = false;
-      }
-
-    }
-  } catch (error) {
-    console.log(error);
-  }
 },
 
     async loadByRet(page = 1) {
@@ -172,7 +177,7 @@ export default {
           // first letter to uppecase
           this.returnStationName = this.returnStationName.charAt(0).toUpperCase() + this.returnStationName.slice(1);
 
-          const response = await axios.get(`http://localhost:4000/trips/return/${this.returnStationName}?page=${page}`);
+          const response = await axios.get(`http://localhost:${process.env.PORT}/trips/return/${this.returnStationName}?page=${page}`);
           this.trips = response.data.trips;
           this.totalPages = response.data.totalPages;
           this.currentPage = response.data.currentPage;
@@ -181,10 +186,10 @@ export default {
           this.departureStationName = '';
 
           if (!this.trips.length) {
-            this.notyEmptyResult = true;
+            this.emptyResult = true;
           }
           else{
-            this.notyEmptyResult = false;
+            this.emptyResult = false;
           }
 
         }

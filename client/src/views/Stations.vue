@@ -12,17 +12,17 @@
           v-model="stationName"
         >
         <button
-          class="button is-small ml-1"
+          class="button is-small ml-1 is-primary"
           @click="stationByName"
         >
           >
         </button>
       </div>
       <p class="mt-5">Or load all</p>
-      <button class="button" @click="loadStations">Load</button>
+      <button class="button is-primary" @click="loadStations">Load All</button>
     </div>
     
-    <div class="mt-5 has-text-danger" v-if="notyEmptyResult === true">Station not found, check name</div>
+    <div class="mt-5 has-text-danger" v-if="emptyResult === true">Station not found, check name</div>
 
     <div>
       <table v-if="stations.length > 0" class="table is is-striped is-hoverable has-text-left m-5">
@@ -57,20 +57,24 @@
 <script>
 import axios from 'axios'
 
+// Load environment variables from .env file
+const dotenv = require('dotenv'); 
+dotenv.config();
+
 export default {
   data() {
     return {
       stations: [],
       currentPage: 1, // add currentPage variable to the data object
       totalPages: null, // add totalPages variable to the data object
-      notyEmptyResult: false,
+      emptyResult: false,
       stationName: ''
     }
   },
   methods: {
     async loadStations(page = 1) {
       try {
-        const response = await axios.get(`http://localhost:4000/stations?page=${page}`)
+        const response = await axios.get(`http://localhost:${process.env.PORT}/stations?page=${page}`)
         if (response.data) {
 
           
@@ -78,7 +82,7 @@ export default {
           this.totalPages = response.data.totalPages
           this.currentPage = response.data.currentPage // set current page from response
 
-          this.notyEmptyResult = false;
+          this.emptyResult = false;
           this.stationName= ''
 
         }
@@ -98,18 +102,24 @@ export default {
     },
     async stationByName() {
       try{
-        const response = await axios.get(`http://localhost:4000/stations/byName/${this.stationName}`)
+        if (this.stationName !== '') {
+        // Convert first letter to uppercase
+        this.stationName = this.stationName.charAt(0).toUpperCase() + this.stationName.slice(1);
+
+       
+        const response = await axios.get(`http://localhost:${process.env.PORT}/stations/byName/${this.stationName}`)
 
         if (response.data){ 
           this.stations = [response.data]
-          this.notyEmptyResult = false
+          this.emptyResult = false
         } 
         // noty user if not found
         else { 
-          this.notyEmptyResult = true
+          this.emptyResult = true
           this.stations = [];
         }
       }
+    }
       catch (error) {
         console.log(error)
       }
