@@ -20,8 +20,13 @@ The project relies on the following technologies:
 - **Express.js**: Simplifies routing, middleware, and HTTP request handling for building scalable and robust web APIs.
 - **MongoDB**: A versatile NoSQL database for efficient data storage and retrieval, offering flexibility and scalability.
 - **Vue.js**: Empowers the creation of dynamic and interactive user interfaces, enhancing user experiences with its progressive JavaScript framework.
+- **Axios.js**: A popular HTTP client library for JavaScript that simplifies making asynchronous HTTP requests from both the frontend and backend. It is used to communicate with the backend server and fetch data from the APIs.
 - **Mocha**: A comprehensive testing framework for running unit and integration tests, ensuring reliable functionality.
 - **Chai**: An assertion library that provides expressive and readable test assertions, complementing Mocha in creating effective test suites.
+
+### Data Validation
+
+The datasets used in the application underwent validation to ensure data accuracy and consistency. Python scripts were employed to drop rows with empty fields, remove duplicates, and filter out trips with minimal distance or duration. Additionally, Excel Power Query was utilized for further data cleansing and transformation tasks, such as rounding values and converting data types. 
 
 ## Features
 
