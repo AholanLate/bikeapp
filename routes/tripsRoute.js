@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
   }
 })
 
-// Get trip statistics for a particular station
+// Get trip statistics for a particular station, detailed view
 router.get("/:id", async (req, res) => {
   try {
     const station_id = parseInt(req.params.id);

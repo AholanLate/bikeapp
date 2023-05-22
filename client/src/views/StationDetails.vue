@@ -13,7 +13,7 @@
         <p>Trips to: {{stationStats.endingTrips}}</p>
         <p>Average distance from: {{stationStats.avgStartingTripDistance}}m</p>
         <p>Average distance to: {{stationStats.avgReturnTripDistance}}m</p> 
-        <button class="button is-small mt-3" @click="goBack">Previous Page</button>
+        <button class="button is-primary is-small mt-3" @click="goBack">Previous Page</button>
       </div>
     </div>
   </div>
@@ -37,31 +37,35 @@ export default {
     }
   },
   async created() {
-try {
-  const response = await axios.get(`http://localhost:4000/stations/${this.id}`)
-  if (response.data) {
-    this.station = response.data
-  }
-} catch (error) {
-  console.log(error)
-}
-try{
-  const response = await axios.get(`http://localhost:4000/trips/${this.id}`)
-  if (response.data) {
-    this.stationStats = response.data
-  }
-}
-catch (error) {
-  console.log(error)
-}
-this.loading = false
-},
+    // get station info
+    try {
+      const response = await axios.get(`http://localhost:4000/stations/${this.id}`)
+      if (response.data) {
+        this.station = response.data
+      }
+    } catch (error) {
+      console.log(error)
+    }
+    // trip statistics for stations
+    try{
+      const response = await axios.get(`http://localhost:4000/trips/${this.id}`)
+      if (response.data) {
+        this.stationStats = response.data
+      }
+    }
+    catch (error) {
+      console.log(error)
+    }
+    this.loading = false
+    },
   methods: {
+
+    // previous page button
     goBack() {
       this.$router.go(-1)
+      }
     }
   }
-}
 </script>
 
 <style>

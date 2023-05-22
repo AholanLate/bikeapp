@@ -12,14 +12,14 @@
           v-model="stationName"
         >
         <button
-          class="button is-small ml-1"
+          class="button is-primary is-small ml-1"
           @click="stationByName"
         >
           >
         </button>
       </div>
       <p class="mt-5">Or load all</p>
-      <button class="button" @click="loadStations">Load</button>
+      <button class="button is-primary" @click="loadStations">Load</button>
     </div>
     
     <div class="mt-5 has-text-danger" v-if="notyEmptyResult === true">Station not found, check name</div>
@@ -61,13 +61,14 @@ export default {
   data() {
     return {
       stations: [],
-      currentPage: 1, // add currentPage variable to the data object
-      totalPages: null, // add totalPages variable to the data object
+      currentPage: 1, 
+      totalPages: null, 
       notyEmptyResult: false,
       stationName: ''
     }
   },
   methods: {
+
     async loadStations(page = 1) {
       try {
         const response = await axios.get(`http://localhost:4000/stations?page=${page}`)
@@ -86,16 +87,23 @@ export default {
         console.log(error)
       }
     },
+
     nextPage() {
-      if (this.currentPage < this.totalPages) { // check if there are still pages left
-        this.loadStations(this.currentPage + 1) // increment the currentPage by 1 and pass it to the loadTrips function
+      // check if there are still pages left
+      // increment the currentPage by 1 and pass it to the loadTrips function
+      if (this.currentPage < this.totalPages) { 
+        this.loadStations(this.currentPage + 1) 
       }
     },
+
     previousPage() {
-      if (this.currentPage > 1) { // check if currentPage is not the first page
-        this.loadStations(this.currentPage - 1) // decrement the currentPage by 1 and pass it to the loadTrips function
+      // check if currentPage is not the first page
+      // decrement the currentPage by 1 and pass it to the loadTrips function
+      if (this.currentPage > 1) { 
+        this.loadStations(this.currentPage - 1) 
       }
     },
+    
     async stationByName() {
       try{
         // Convert first letter to uppercase

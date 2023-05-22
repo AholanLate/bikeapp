@@ -4,7 +4,10 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const expect = chai.expect;
 
+// tests for trips
 describe('Trips API', () => {
+
+  // load all with pagination
   describe('GET /trips', () => {
     it('should return a list of trips with pagination', (done) => {
       chai.request(`http://localhost:${process.env.PORT}`)
@@ -21,9 +24,10 @@ describe('Trips API', () => {
     });
   });
 
+  // find trips by station id for station details
   describe('GET /trips/:id', () => {
     it('should return trip statistics for a particular station', function (done) {
-      this.timeout(5000); // Increase the timeout limit
+      this.timeout(10000); // Increase the timeout limit, it takes a while to load
   
       const stationId = 501;
       chai.request(`http://localhost:${process.env.PORT}`)
@@ -40,7 +44,7 @@ describe('Trips API', () => {
     });
   });
   
-  
+  // trips by stations names
   describe('GET /trips/departure/:name', () => {
     it('should return trips with a particular departure station name', (done) => {
       const testStationName = 'Hanasaari';

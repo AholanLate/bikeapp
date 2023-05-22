@@ -8,7 +8,10 @@ const expect = chai.expect;
 const testStationId = 501;
 const testStationName = 'Länsituuli';
 
+// tests for station API
 describe('Station API', () => {
+
+  // find with station name
   describe('GET /stations/byName/:name', () => {
     it('should return a station by name', (done) => {
       chai.request(`http://localhost:${process.env.PORT}`)
@@ -23,6 +26,7 @@ describe('Station API', () => {
         });
     });
 
+    // not found / no response
     it('no response data if station is not found', (done) => {
       chai.request(`http://localhost:${process.env.PORT}`)
         .get('/stations/byName/NonExistentStation')
@@ -33,6 +37,7 @@ describe('Station API', () => {
     });
   });
 
+  // get station by id
   describe('GET /stations/:id', () => {
     it('should return a station by id', (done) => {
       chai.request(`http://localhost:${process.env.PORT}`)
@@ -47,6 +52,7 @@ describe('Station API', () => {
         });
     });
 
+    // not found
     it('should return an error if station is not found', (done) => {
       chai.request(`http://localhost:${process.env.PORT}`)
         .get('/stations/999')
