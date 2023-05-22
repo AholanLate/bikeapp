@@ -19,7 +19,7 @@
         </button>
       </div>
       <p class="mt-5">Or load all</p>
-      <button class="button is-primary" @click="loadStations">Load</button>
+      <button class="button is-primary" @click="loadStations">Load All</button>
     </div>
     
     <div class="mt-5 has-text-danger" v-if="notyEmptyResult === true">Station not found, check name</div>

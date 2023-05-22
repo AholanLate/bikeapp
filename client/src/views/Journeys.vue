@@ -34,7 +34,7 @@
       </div>
 
       <p class="mt-5">Or load all</p>
-      <button class="button is-primary" @click="loadTrips">Load</button>
+      <button class="button is-primary" @click="loadTrips">Load All</button>
     </div>
 
     <div class="mt-5 has-text-danger" v-if="emptyResult === true">No trips found, check filters</div>
