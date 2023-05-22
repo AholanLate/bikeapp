@@ -5,14 +5,12 @@ This is a pre-assignment for Solita Dev Academy Finland 2023. Made by Lauri Ahol
 ## Table of Contents
 
 - [Project Description](#project-description)
-- [Stack](#stack)
 - [Features](#features)
 - [Run project](#run-project)
-- [Next](#next)
 
 ## Project Description 
 
-Provide a more detailed overview of your project. Describe what it does, why it's useful, and any other important details.
+In this project, datasets are validated and imported into MongoDB. The backend, built with Node.js and Express.js, establishes a connection to the MongoDB database and exposes API routes for fetching data based on specified parameters. Vue.js is utilized to create views for stations and journeys, while Axios handles API requests and retrieves data from the backend. The retrieved data is then presented in tables for easy visualization and analysis.
 
 ## Used Stack
 
@@ -25,9 +23,63 @@ The project relies on the following technologies:
 - **Mocha**: A comprehensive testing framework for running unit and integration tests, ensuring reliable functionality.
 - **Chai**: An assertion library that provides expressive and readable test assertions, complementing Mocha in creating effective test suites.
 
-By leveraging this technology stack, the project achieves seamless integration, efficient server-side development, flexible data management, engaging frontend experiences, and reliable application testing.
-
 ## Features
+
+### Backend 
+
+#### index.js
+
+The `index.js` file serves as the entry point for the backend server. It establishes a connection to the MongoDB database using `mongoose.connect()`. The server defines routes for handling requests related to trips and stations using the `tripsRoute` and `stationsRoute` routers, respectively. Additionally, it listens on a specified port and has a default route for the base URL.
+
+#### stationsRoute
+
+The `stationsRoute.js` file defines routes for fetching stations with pagination and finding stations by ID or name. It interacts with the `Station` model to retrieve data from the MongoDB database.
+
+#### tripsRoute
+
+The `tripsRoute.js` file defines routes for fetching trips with pagination, getting trip statistics for a specific station, and finding trips by departure or return station name. It interacts with the `Trip` model to retrieve data from the MongoDB database.
+
+### Frontend
+
+#### Journeys.vue and Stations.vue
+
+The `Journeys.vue` and `Stations.vue` components are part of a Vue.js frontend application. They provide user interfaces for searching and displaying journey and station information, respectively. These components share some common features:
+
+- **Filtering**: Users can enter specific criteria, such as station names, to filter the results. The components provide input fields where users can enter the desired criteria and buttons to initiate the search.
+
+- **Loading all**: Users have the option to load all journeys or stations without applying any filters. This functionality is triggered by a "Load All" button.
+
+- **Pagination**: Both components support pagination to navigate through the results. Users can use previous and next buttons to move between pages of journeys or stations.
+
+- **Displaying results**: The components present the search results in tables. `Journeys.vue` displays journey details such as departure station, return station, departure time, duration, and distance. `Stations.vue` displays station details, including the station ID, name, address, capacity, and a link to view additional station details.
+
+- **Empty result notification**: If the search does not yield any matching journeys or stations, a message is displayed to inform the user.
+
+These components leverage Vue.js reactivity to update the displayed data based on user interactions and API responses. They use Axios, a popular HTTP client library, to handle the HTTP requests and communicate with the backend server. Axios allows fetching the required data from the backend server through HTTP requests.
+
+#### Station Details
+
+Station details is opened if link "station details" is clicked in the stations view. Station details loads the data for few seconds, and then displays some additional statistics about the station. 
+
+### Tests
+
+- **Station Search**: The test files include tests to search for stations by name using the `/stations/byName/:name` endpoint. These tests verify that the API returns the expected station details, including ID, name, address, and city.
+
+- **Station Not Found**: The test files include tests to handle scenarios where a station is not found. They ensure that the API response is empty when searching for a non-existent station using the `/stations/byName/:name` endpoint.
+
+- **Station Details by ID**: The test files include tests to retrieve station details by their ID using the `/stations/:id` endpoint. These tests verify that the API returns the expected station details, including ID, name, address, and city.
+
+- **Station ID Not Found**: The test files also include tests to handle scenarios where a station with a specific ID is not found. They ensure that the API returns a 404 error when requesting a non-existent station using the `/stations/:id` endpoint.
+
+- **Trips List with Pagination**: The test files include tests to retrieve a list of trips with pagination using the `/trips` endpoint. These tests verify that the API response contains the expected data, including the current page, total pages, total items, and an array of trips.
+
+- **Trip Statistics by Station ID**: The test files include tests to retrieve trip statistics for a specific station using the `/trips/:id` endpoint. They verify that the API response contains the expected statistics, such as the number of starting trips, ending trips, average starting trip distance, and average return trip distance.
+
+- **Trips by Departure Station Name**: The test files include tests to retrieve trips with a particular departure station name using the `/trips/departure/:name` endpoint. They ensure that the API response contains the expected data, including the current page, total pages, total items, and an array of trips.
+
+- **Trips by Return Station Name**: The test files include tests to retrieve trips with a specific return station name using the `/trips/return/:name` endpoint. They ensure that the API response contains the expected data, including the current page, total pages, total items, and an array of trips.
+
+These test files contain tests that validate the functionality of the corresponding API endpoints related to stations and trips. These tests help ensure the correctness and reliability of the API implementation.
 
 ## Run project
 
@@ -96,7 +148,7 @@ Run tests
 
 `npm run test`
 
-## Next
 
-How would I continue to develop this project?
+
+
 
